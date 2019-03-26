@@ -4,5 +4,11 @@
     "require": {
         "slim/slim": "^3.12",
         "squizlabs/php_codesniffer": "^3.4"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
     }
 }
