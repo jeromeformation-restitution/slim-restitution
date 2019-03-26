@@ -1,0 +1,8 @@
+{
+    "name": "classe/slim-restitution",
+    "type": "project",
+    "require": {
+        "slim/slim": "^3.12",
+        "squizlabs/php_codesniffer": "^3.4"
+    }
+}

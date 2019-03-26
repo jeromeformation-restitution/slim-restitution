@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<ruleset name="Generic">
+    <description>Sniffeur de code de l application</description>
+
+    <arg name="colors"></arg>
+
+    <file>public/index.php</file>
+    <file>src</file>
+
+    <rule ref="PSR2"></rule>
+</ruleset>
