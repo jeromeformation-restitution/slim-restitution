@@ -13,7 +13,7 @@
 {% block navbar %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Container</a>
+            <a class="navbar-brand" href="{{ path_for('Accueil') }}">Accueil</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,17 +21,18 @@
             <div class="collapse navbar-collapse" id="navbarsExample07">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="formulaire-produit.php">Formulaire création produit</a>
+                        <a class="nav-link" href="{{ path_for('Contact') }}">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="calculatrice.php">Calculatrice</a>
+                        <a class="nav-link" href="{{ path_for('About') }}">About</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projets</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown07">
-                            <?php foreach($categories as $cat) : ?>
-                            <a class="dropdown-item" href="#"><?= $cat['name'] ?></a>
-                            <?php endforeach; ?>
+
+                            <a class="dropdown-item" href="{{ path_for('Detail' , { 'id': 200 }) }}">Détail</a>
+                            <a class="dropdown-item" href="{{ path_for('Création') }}">Création</a>
+
 
                         </div>
                     </li>
