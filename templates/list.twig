@@ -1,0 +1,15 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+{% for p in projects %}
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ p.name | upper }}</h5>
+            <p class="card-text">{{ p.description |slice(0, 50) | raw('html')}}</p>
+            <a href="{{ path_for("Detail", {slug: p.slug}) }}" class="btn btn-primary">Détails</a>
+        </div>
+    </div>
+
+{% endfor %}
+{% endblock %}
