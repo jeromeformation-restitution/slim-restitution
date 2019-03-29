@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Repository\ProjectRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
@@ -8,11 +9,16 @@ use Slim\Views\Twig;
 class ProjetController
 {
     private $twig;
+    /**
+     * @var ProjectRepository
+     */
+    private $projectRepository;
 
-    public function __construct(Twig $twig)
+    public function __construct(Twig $twig, ProjectRepository $projectRepository)
     {
         $this->twig = $twig;
 
+        $this->projectRepository = $projectRepository;
     }
 
     public function show(Request $request, ResponseInterface $response, ?array $args): ResponseInterface
@@ -20,20 +26,8 @@ class ProjetController
         $startedAt = new\DateTime('2019-01-01');
         $finishedAt = new\DateTime();
 
-        $project=[
-            'id'=> 55,
-            'name'=>'mon site',
-            'description'=>'<p>super avec slim c\'est genial</p>',
-            'languages'=>["html", "php", "jquery", "sql"],
-            'startedAt'=> $startedAt,
-            'finishedAt'=>$finishedAt,
-            'image'=>'sit.png'
-
-
-
-        ];
+        $project=$this->projectRepository->findBySlug($args['slug']);
         return $this->twig->render($response, 'show.twig', ['project'=>$project]);
-
     }
 
     public function create(Request $request, ResponseInterface $response, ?array $args): ResponseInterface

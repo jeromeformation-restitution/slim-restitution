@@ -10,6 +10,8 @@
 use App\Controller\AboutController;
 use App\Controller\ContactController;
 use App\Controller\ProjetController;
+use App\Generic\Connection;
+use App\Repository\ProjectRepository;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Uri;
 use Slim\Views\Twig;
@@ -32,7 +34,10 @@ $container['view'] = function (ContainerInterface $container) {
 };
 
 $container [ProjetController::class]  = function (ContainerInterface $container) {
-    return new ProjetController($container['view']);
+    return new ProjetController(
+        $container['view'],
+        $container[ProjectRepository::class]
+    );
 };
 
 $container [ContactController::class]  = function (ContainerInterface $container) {
@@ -41,4 +46,18 @@ $container [ContactController::class]  = function (ContainerInterface $container
 
 $container [AboutController::class]  = function (ContainerInterface $container) {
     return new AboutController($container['view']);
+};
+
+$container [Connection::class]  = function (ContainerInterface $container) {
+    return new Connection(
+        $container ['settings']['database'],
+        $container ['settings']['user'],
+        $container ['settings']['pass']
+    );
+
+
+};
+
+$container [ProjectRepository::class]  = function (ContainerInterface $container) {
+    return new ProjectRepository($container[Connection::class]);
 };

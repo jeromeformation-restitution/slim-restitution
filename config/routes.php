@@ -20,10 +20,10 @@ $app->get('/', function (ServerRequestInterface $request, ResponseInterface $res
 
 
 $app->group('/project', function () {
-    $this->get('/{id:\d+}', ProjetController::class .':show')
-        ->setName("Detail");
     $this->get('/create', ProjetController::class.':create')
         ->setName("Création");
+    $this->get('/{slug}', ProjetController::class .':show')
+        ->setName("Detail");
 
 });
 

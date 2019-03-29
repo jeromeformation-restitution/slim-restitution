@@ -70,4 +70,43 @@ class Connection
         $statement->execute();
         return $statement->fetchAll();
     }
+
+    public function queryPrepared(string $query, array $params, ?string $className = null, ?bool $fetchAll = true)
+    {
+        $statement = $this->pdo->prepare($query);
+        $statement->execute($params);
+
+        if ($className!=null) {
+            $statement->setFetchMode($this->pdo::FETCH_CLASS, $className);
+        }
+
+        if ($fetchAll) {
+            $resultat = $statement->fetchAll();
+        } else {
+            $resultat = $statement->fetch();
+        }
+
+        return $resultat;
+    }
 }
+
+
+/*
+ *
+ * public PDOStatement::setFetchMode ( int $PDO::FETCH_CLASS , string $classname , array $ctorargs ) : bool
+ *
+ *
+$sql = 'SELECT nom, couleur, calories
+    FROM fruit
+WHERE calories < :calories AND couleur = :couleur';
+$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$sth->execute(array(':calories' => 150, ':couleur' => 'red'));
+$red = $sth->fetchAll();
+
+
+
+$sql = "SELECT * FROM project WHERE slug= :slug"
+$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$sth->execute(array(':slug' => $slug));
+$red = $sth->fetchAll();
+*/

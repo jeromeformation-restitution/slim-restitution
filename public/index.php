@@ -4,7 +4,7 @@ use Slim\App;
 
 require dirname(__DIR__).'/vendor/autoload.php';
 
-$config = require dirname ( __DIR__) . "/config/config.php" ;
+$config = require dirname(__DIR__) . "/config/config.php" ;
 // $app = new \Slim\App($config);
 $app = new App($config);
 

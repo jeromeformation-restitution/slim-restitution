@@ -11,6 +11,6 @@ return [
         'displayErrorDetails' => true,
         'database' => 'bdd_projets',
         'user' => 'user_projet',
-        'mdp' => 'NHWww5RURi1PH8Hc'
+        'pass' => 'NHWww5RURi1PH8Hc'
     ]
 ];
