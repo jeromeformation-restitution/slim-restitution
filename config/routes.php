@@ -20,6 +20,8 @@ $app->get('/', function (ServerRequestInterface $request, ResponseInterface $res
 
 
 $app->group('/project', function () {
+    $this->get('/list', ProjetController::class.':list')
+        ->setName("list");
     $this->get('/create', ProjetController::class.':create')
         ->setName("Création");
     $this->get('/{slug}', ProjetController::class .':show')

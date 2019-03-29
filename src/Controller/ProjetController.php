@@ -20,6 +20,11 @@ class ProjetController
 
         $this->projectRepository = $projectRepository;
     }
+    public function list(Request $request, ResponseInterface $response): ResponseInterface
+    {
+        $projects = $this->projectRepository->findAll();
+        return $this->twig->render($response, 'list.twig', ['projects' => $projects]);
+    }
 
     public function show(Request $request, ResponseInterface $response, ?array $args): ResponseInterface
     {

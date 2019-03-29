@@ -20,4 +20,14 @@ class ProjectRepository
         $resultat=$this->connection->queryPrepared($query, array(':slug' => $slug), Project::class, false);
         return $resultat;
     }
+
+    public function findAll(): array
+    {
+        $query = "SELECT * FROM liste_projets";
+        $resultat = $this->connection->query(
+            $query,
+            Project::class
+        );
+        return $resultat;
+    }
 }
